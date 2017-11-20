@@ -42,6 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DynamicPrograming\BagProblem.cs" />
+    <Compile Include="DynamicPrograming\FewestCoinsWithNoAnswer.cs" />
+    <Compile Include="DynamicPrograming\FewestCoins.cs" />
+    <Compile Include="DynamicPrograming\LongestIncreasingSubsequence.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

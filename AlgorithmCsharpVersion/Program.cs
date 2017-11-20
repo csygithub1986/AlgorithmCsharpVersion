@@ -10,6 +10,11 @@ namespace AlgorithmCsharpVersion
     {
         static void Main(string[] args)
         {
+            //write function here
+            DynamicPrograming.FewestCoinsWithNoAnswer.Test();
+
+            Console.WriteLine("回车退出...");
+            Console.ReadLine();
         }
     }
 }
