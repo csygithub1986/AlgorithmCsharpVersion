@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DynamicPrograming\BagProblem.cs" />
+    <Compile Include="DynamicPrograming\CollectApple.cs" />
     <Compile Include="DynamicPrograming\FewestCoinsWithNoAnswer.cs" />
     <Compile Include="DynamicPrograming\FewestCoins.cs" />
     <Compile Include="DynamicPrograming\LongestIncreasingSubsequence.cs" />

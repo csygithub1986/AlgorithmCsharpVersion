@@ -8,6 +8,5 @@ namespace AlgorithmCsharpVersion.DynamicPrograming
 {
     public class BagProblem
     {
-        private void 
     }
 }
