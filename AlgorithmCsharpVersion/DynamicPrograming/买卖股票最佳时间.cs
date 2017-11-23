@@ -38,6 +38,20 @@ namespace AlgorithmCsharpVersion.DynamicPrograming
         }
 
         #region 测试
+
+        int n = 100;
+        int[] prices;
+
+        public 买卖股票最佳时间()
+        {
+            Random ran = new Random();
+            prices = new int[n];
+            for (int i = 0; i < n; i++)
+            {
+                prices[i] = ran.Next(1, 20);
+            }
+        }
+
         public void AlgorithmTest()
         {
         }

@@ -9,7 +9,7 @@ namespace AlgorithmCsharpVersion.DynamicPrograming
     /// <summary>
     /// 求序列中最长的递增子序列，时间复杂度为O(n)，空间复杂度O(n)
     /// </summary>
-    public class LongestIncreasingSubsequence : ITest
+    public class 最长递增子序列 : ITest
     {
         private int GetLongest(int[] sequence, out int[] subSequence)
         {
@@ -19,10 +19,10 @@ namespace AlgorithmCsharpVersion.DynamicPrograming
                 return 1;
             }
 
-            int[] d = new int[sequence.Length];//表示序列长度为i时，递增子序列的最大长度
+            int[] d = new int[sequence.Length];//d[i]表示以i元素结尾时的递增子序列长度
             d[0] = 1;
 
-            int[] s = new int[sequence.Length];//记录求解过程中前一个比自己小的数，前序
+            int[] s = new int[sequence.Length];//s[i]表示以i元素结尾的子序列的前序一个元素的索引
             s[0] = -1;//-1表示没有前序的值
 
             subSequence = null;
@@ -35,7 +35,7 @@ namespace AlgorithmCsharpVersion.DynamicPrograming
                 s[i] = -1;
                 for (int j = 0; j < i; j++)
                 {
-                    //当前i的值和之前的值循环比较
+                    //前序子序列的最后元素比当前元素小时，把当前元素加入子序列
                     if (sequence[j] < sequence[i])
                     {
                         if (d[i] < d[j] + 1)

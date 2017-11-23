@@ -11,7 +11,7 @@ namespace AlgorithmCsharpVersion
         static void Main(string[] args)
         {
             //write function here
-            ITest test = new DynamicPrograming.LongestIncreasingSubsequence();
+            ITest test = new DynamicPrograming.最长递增子序列();
 
             DateTime t1 = DateTime.Now;
             Console.WriteLine("算法测试：");

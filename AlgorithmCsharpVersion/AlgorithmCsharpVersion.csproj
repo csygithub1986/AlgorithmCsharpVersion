@@ -46,7 +46,7 @@
     <Compile Include="DynamicPrograming\CollectApple.cs" />
     <Compile Include="DynamicPrograming\FewestCoinsWithNoAnswer.cs" />
     <Compile Include="DynamicPrograming\FewestCoins.cs" />
-    <Compile Include="DynamicPrograming\LongestIncreasingSubsequence.cs" />
+    <Compile Include="DynamicPrograming\最长递增子序列.cs" />
     <Compile Include="DynamicPrograming\买卖股票最佳时间.cs" />
     <Compile Include="DynamicPrograming\平均分配连续任务.cs" />
     <Compile Include="ITest.cs" />
