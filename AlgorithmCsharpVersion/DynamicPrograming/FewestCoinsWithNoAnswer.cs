@@ -8,6 +8,7 @@ namespace AlgorithmCsharpVersion.DynamicPrograming
 {
     /// <summary>
     /// 任意的硬币若干枚，如何用最少的硬币凑够N元，如果不能凑出来，请注明无解
+    /// m种硬币，n元，时间复杂度O(m*n)，空间复杂度O(m+n)
     /// </summary>
     public class FewestCoinsWithNoAnswer
     {
