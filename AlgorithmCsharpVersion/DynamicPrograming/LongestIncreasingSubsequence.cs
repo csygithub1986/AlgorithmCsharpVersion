@@ -9,9 +9,9 @@ namespace AlgorithmCsharpVersion.DynamicPrograming
     /// <summary>
     /// 求序列中最长的递增子序列，时间复杂度为O(n)，空间复杂度O(n)
     /// </summary>
-    public class LongestIncreasingSubsequence
+    public class LongestIncreasingSubsequence : ITest
     {
-        private static int GetLongest(int[] sequence, out int[] subSequence)
+        private int GetLongest(int[] sequence, out int[] subSequence)
         {
             if (sequence.Length == 1)
             {
@@ -19,7 +19,7 @@ namespace AlgorithmCsharpVersion.DynamicPrograming
                 return 1;
             }
 
-            int[] d = new int[sequence.Length];//记录求解过程中的值，d中最大的即最终答案
+            int[] d = new int[sequence.Length];//表示序列长度为i时，递增子序列的最大长度
             d[0] = 1;
 
             int[] s = new int[sequence.Length];//记录求解过程中前一个比自己小的数，前序
@@ -35,6 +35,7 @@ namespace AlgorithmCsharpVersion.DynamicPrograming
                 s[i] = -1;
                 for (int j = 0; j < i; j++)
                 {
+                    //当前i的值和之前的值循环比较
                     if (sequence[j] < sequence[i])
                     {
                         if (d[i] < d[j] + 1)
@@ -69,10 +70,10 @@ namespace AlgorithmCsharpVersion.DynamicPrograming
             return maxValue;
         }
 
-        public static void Test()
+        public void AlgorithmTest()
         {
             //循环测试
-            int[] totalSequence = { 1, 3, 7, 3, 4, 6, 2, 6, 8, 5, 12, 9, 11, 15, 5, 6, 7, 8, 9, 10, 11 };
+            int[] totalSequence = { 1, 3, 5, 7, 3, 4, 1, 2, 3, 4, 5 };
 
             for (int i = 1; i <= totalSequence.Length; i++)
             {
@@ -103,7 +104,10 @@ namespace AlgorithmCsharpVersion.DynamicPrograming
 
                 Console.WriteLine();
             }
+        }
 
+        public void BruteForceTest()
+        {
         }
     }
 }
