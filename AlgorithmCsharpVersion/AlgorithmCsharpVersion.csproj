@@ -42,19 +42,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DynamicPrograming\BagProblem.cs" />
-    <Compile Include="DynamicPrograming\CollectApple.cs" />
-    <Compile Include="DynamicPrograming\FewestCoinsWithNoAnswer.cs" />
-    <Compile Include="DynamicPrograming\FewestCoins.cs" />
-    <Compile Include="DynamicPrograming\最长递增子序列.cs" />
-    <Compile Include="DynamicPrograming\买卖股票最佳时间.cs" />
-    <Compile Include="DynamicPrograming\平均分配连续任务.cs" />
+    <Compile Include="DynamicPrograming\medium\BagProblem.cs" />
+    <Compile Include="DynamicPrograming\easy\CollectApple.cs" />
+    <Compile Include="DynamicPrograming\easy\FewestCoinsWithNoAnswer.cs" />
+    <Compile Include="DynamicPrograming\easy\FewestCoins.cs" />
+    <Compile Include="DynamicPrograming\easy\反复查询区间和.cs" />
+    <Compile Include="DynamicPrograming\easy\抢劫房子.cs" />
+    <Compile Include="DynamicPrograming\medium\最长递增子序列.cs" />
+    <Compile Include="DynamicPrograming\easy\买卖股票最佳时间.cs" />
+    <Compile Include="DynamicPrograming\medium\平均分配连续任务.cs" />
+    <Compile Include="DynamicPrograming\easy\爬楼梯.cs" />
+    <Compile Include="DynamicPrograming\medium\最大连续子序列和.cs" />
+    <Compile Include="DynamicPrograming\easy\输出数字的二进制中1的个数.cs" />
     <Compile Include="ITest.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DynamicPrograming\hard\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace AlgorithmCsharpVersion.DynamicPrograming
 {
     /// <summary>
+    /// 难度★★☆☆☆
     /// 求序列中最长的递增子序列，时间复杂度为O(n)，空间复杂度O(n)
     /// </summary>
     public class 最长递增子序列 : ITest

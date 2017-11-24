@@ -11,15 +11,16 @@ namespace AlgorithmCsharpVersion
         static void Main(string[] args)
         {
             //write function here
-            ITest test = new DynamicPrograming.最长递增子序列();
+            ITest test = new DynamicPrograming.输出数字的二进制中1的个数();
 
+            Console.WriteLine();
             DateTime t1 = DateTime.Now;
             Console.WriteLine("算法测试：");
             test.AlgorithmTest();
             DateTime t2 = DateTime.Now;
             Console.WriteLine("耗时：" + (t2 - t1).TotalMilliseconds.ToString("F0") + " ms");
 
-
+            Console.WriteLine();
             Console.WriteLine("蛮力验证：");
             test.BruteForceTest();
             DateTime t3 = DateTime.Now;
