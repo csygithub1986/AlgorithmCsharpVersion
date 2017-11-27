@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DynamicPrograming\hard\RemoveBoxesWithProcedure.cs" />
     <Compile Include="DynamicPrograming\medium\BagProblem.cs" />
     <Compile Include="DynamicPrograming\easy\CollectApple.cs" />
     <Compile Include="DynamicPrograming\easy\FewestCoinsWithNoAnswer.cs" />
@@ -54,6 +55,7 @@
     <Compile Include="DynamicPrograming\easy\爬楼梯.cs" />
     <Compile Include="DynamicPrograming\medium\最大连续子序列和.cs" />
     <Compile Include="DynamicPrograming\easy\输出数字的二进制中1的个数.cs" />
+    <Compile Include="DynamicPrograming\hard\RemoveBoxes.cs" />
     <Compile Include="ITest.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -61,8 +63,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DynamicPrograming\hard\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

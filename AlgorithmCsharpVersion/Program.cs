@@ -11,7 +11,7 @@ namespace AlgorithmCsharpVersion
         static void Main(string[] args)
         {
             //write function here
-            ITest test = new DynamicPrograming.输出数字的二进制中1的个数();
+            ITest test = new DynamicPrograming.RemoveBoxesWithProcedure();
 
             Console.WriteLine();
             DateTime t1 = DateTime.Now;
