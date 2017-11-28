@@ -25,113 +25,107 @@ using System.Threading.Tasks;
 
 namespace AlgorithmCsharpVersion.DynamicPrograming
 {
+    /// <summary>
+    /// 算法时间复杂度为O(n^4)，空间复杂度为O(n^3)，拟合结果y = 0.0051x4 - 0.9224x3 + 249.05x2 - 23132x + 469303
+    /// </summary>
     class RemoveBoxes : ITest
     {
+        long circulateCount = 0;
         private int Algorithm(int[] boxes)
         {
+            circulateCount = 0;
             int n = boxes.Length;
-            int[,] dp = new int[n, n];
-            return GetDp(boxes, 0, n - 1, dp);
+            int[,,] dp = new int[n, n, n];
+            return AlgorithmSub(boxes, 0, n - 1, 0, dp);
         }
 
-        private int GetDp(int[] boxes, int former, int latter, int[,] dp)
+        private int AlgorithmSub(int[] boxes, int former, int latter, int repetition, int[,,] dp)
         {
-            if (former < 0 || latter < 0)
+            int originLatter = latter;
+            for (; former < latter && boxes[latter] == boxes[latter - 1]; repetition++, latter--) ;
+            int group = 0;
+            if (latter - 1 >= 0)
             {
-                return 0;
-            }
-            else if (former == latter)
-            {
-                return 1;
-            }
-            else if (former > latter)
-            {
-                return 0;
-            }
-            else if (dp[former, latter] != 0)
-            {
-                return dp[former, latter];
+                if (dp[former, latter - 1, 0] > 0)
+                {
+                    group = dp[former, latter - 1, 0];
+                }
+                else if (former == latter - 1)
+                {
+                    group = 1;
+                }
+                else if (former < latter - 1)
+                {
+                    group = AlgorithmSub(boxes, former, latter - 1, 0, dp);
+                }
             }
 
-            List<int> sameColorList = new List<int>();
+            int maxScore = (repetition + 1) * (repetition + 1) + group;
             for (int i = former; i < latter; i++)
             {
+                circulateCount++;          //累计遍历次数
                 if (boxes[i] == boxes[latter])
                 {
-                    sameColorList.Add(i);
+                    int groupFormer = 0;
+                    if (dp[former, i, repetition + 1] > 0)
+                    {
+                        groupFormer = dp[former, i, repetition + 1];
+                    }
+                    else if (former == i)
+                    {
+                        groupFormer = (repetition + 2) * (repetition + 2);
+                    }
+                    else if (former < i)
+                    {
+                        groupFormer = AlgorithmSub(boxes, former, i, repetition + 1, dp);
+                    }
+                    int groupLatter = 0;
+                    if (dp[i + 1, latter - 1, 0] > 0)
+                    {
+                        groupLatter = dp[i + 1, latter - 1, 0];
+                    }
+                    else if (i + 1 == latter - 1)
+                    {
+                        groupLatter = 1;
+                    }
+                    else if (i + 1 < latter - 1)
+                    {
+                        groupLatter = AlgorithmSub(boxes, i + 1, latter - 1, 0, dp);
+                    }
+
+                    maxScore = Math.Max(maxScore, groupFormer + groupLatter);
                 }
             }
-            int maxScore = 1 + GetDp(boxes, former, latter - 1, dp);
-
-            int tempLastArea = 0;
-            int lastm = latter;
-            for (int i = 0; i < sameColorList.Count; i++)
+            dp[former, latter, repetition] = maxScore;
+            for (int i = latter + 1; i <= originLatter; i++)
             {
-                int m = sameColorList[sameColorList.Count - i - 1];
-                int score = (i + 2) * (i + 2) + tempLastArea + GetDp(boxes, former, m - 1, dp) + GetDp(boxes, m + 1, lastm - 1, dp);
-                if (maxScore < score)
-                {
-                    maxScore = score;
-
-                }
-                tempLastArea = tempLastArea + GetDp(boxes, m + 1, lastm - 1, dp);
-                lastm = m;
+                dp[former, i, repetition + latter - i] = maxScore;
             }
-            dp[former, latter] = maxScore;
             return maxScore;
         }
-
-
 
         public void AlgorithmTest()
         {
             //int[] boxes = new int[] { 3, 8, 8, 5, 5, 3, 9, 2, 4, 4, 6, 5, 8, 4, 8, 6, 9, 6, 2, 8, 6, 4, 1, 9, 5, 3, 10, 5, 3, 3, 9, 8, 8, 6, 5, 3, 7, 4, 9, 6, 3, 9, 4, 3, 5, 10, 7, 6, 10, 7, 3, 8, 8, 5, 5, 3, 9, 2, 4, 4, 6, 5, 8, 4, 8, 6, 9, 6, 2, 8, 6, 4, 1, 9, 5, 3, 10, 5, 3, 3, 9, 8, 8, 6, 5, 3, 7, 4, 9, 6, 3, 9, 4, 3, 5, 10, 7, 6, 10, 7, 6, 4, 1, 9, 5, 3, 10, 5, 3, 3, 9, 8, 8, 6, 5, 3, 7, 4, 9, 6, 3, 9, 4, 3, 5, 10, 7, 6, 10, 7, 3, 8, 8, 5, 5, 3, 9, 2, 4, 4, 6, 5, 8, 4, 8, 6, 9, 6, 2, 8, 6, 4, 1, 9, 5, 3, 10, 5, 3, 3, 9, 8, 4, 9, 6, 3, 9, 4, 3, 5, 10, 7, 6, 10, 7, 3, 8, 8, 5, 5, 3, 9, 2, 4, 4, 6, 5, 8, 4, 8, 6, 9, 6, 2, 8, 6, 4, 1, 9, 5, 3, 10, 5, 3, 3, 9, 8, 8, 6, 5, 3, 7, 4, 9, 6, 3, 9, 4, 3, 5, 10, 7, 6, 10, 7, 6, 4, 1, 9, 5, 3, 10, 5, 3, 3, 9, 8, 8, 6, 5, 3, 7, 4, 9, 6, 3, 9, 4, 3, 5, 10, 7, 6, 10, 7, 3, 8, 8, 5, 5, 3, 9, 2 };
             //int[] boxes = new int[] { 3, 8, 8, 5, 5, 3, 9, 2, 4, 6, 5, 8, 4, 8, 6, 9, 6, 8, 6, 4, 1, 9, 5, 10, 5, 3, 3, 9, 8, 8, 6, 5, 3, 7, 4, 9, 6, 3, 9, 4, 3, 5, 10, 7, 6, 10, 7 };
             //int[] boxes = new int[] { 1, 3, 2, 2, 2, 3, 4, 3, 1 };
-            int[] boxes = new int[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 8, 6, 4, 1, 9, 5, 3, 10, 5, 3, 3, 9, 8, 8, 6, 5, 3, 7, 4, 9, 6, 3, 9, 4, 3, 5, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 6, 8, 6, 4, 1, 9, 5, 10, 5, 3, 3, 9, 8, 8, 6, 5, 3, 7, 4, 9, 6, 3, 9, 4 };
-            int answer = Algorithm(boxes);
-            Console.WriteLine("n=" + boxes.Length);
-            Console.WriteLine(answer);
-            //Console.WriteLine(dpDirectCount + "," + dpCalculateCount + "," + countN);
-            //Console.WriteLine(small0 + "," + equal + "," + bigger);
-
-            Console.WriteLine("答案：");
-            answer = removeBoxes(boxes);
-            Console.WriteLine(answer);
-
+            //int[] boxes = new int[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 8, 6, 4, 1, 9, 5, 3, 10, 5, 3, 3, 9, 8, 8, 6, 5, 3, 7, 4, 9, 6, 3, 9, 4, 3, 5, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 6, 8, 6, 4, 1, 9, 5, 10, 5, 3, 3, 9, 8, 8, 6, 5, 3, 7, 4, 9, 6, 3, 9, 4 };
+            Random ran = new Random();
+            for (int i = 1; i < 2; i++)
+            {
+                int[] boxes = new int[i];
+                for (int j = 0; j < i; j++)
+                {
+                    boxes[j] = ran.Next(1, 20);
+                }
+                int answer = Algorithm(boxes);
+                Console.WriteLine(i + "\t" + circulateCount);
+            }
         }
 
         public void BruteForceTest()
         {
         }
 
-
-
-        public int removeBoxes(int[] boxes)
-        {
-            int n = boxes.Length;
-            int[,,] dp = new int[n, n, n];
-            return removeBoxesSub(boxes, 0, n - 1, 0, dp);
-        }
-
-        private int removeBoxesSub(int[] boxes, int i, int j, int k, int[,,] dp)
-        {
-            if (i > j) return 0;
-            if (dp[i, j, k] > 0) return dp[i, j, k];
-
-            for (; i + 1 <= j && boxes[i + 1] == boxes[i]; i++, k++) ; // optimization: all boxes of the same color counted continuously from the first box should be grouped together
-            int res = (k + 1) * (k + 1) + removeBoxesSub(boxes, i + 1, j, 0, dp);
-
-            for (int m = i + 1; m <= j; m++)
-            {
-                if (boxes[i] == boxes[m])
-                {
-                    res = Math.Max(res, removeBoxesSub(boxes, i + 1, m - 1, 0, dp) + removeBoxesSub(boxes, m, j, k + 1, dp));
-                }
-            }
-
-            dp[i, j, k] = res;
-            return res;
-        }
     }
 }

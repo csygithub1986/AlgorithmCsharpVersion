@@ -11,7 +11,7 @@ namespace AlgorithmCsharpVersion
         static void Main(string[] args)
         {
             //write function here
-            ITest test = new DynamicPrograming.RemoveBoxesWithProcedure();
+            ITest test = new DynamicPrograming.RemoveBoxes();
 
             Console.WriteLine();
             DateTime t1 = DateTime.Now;
