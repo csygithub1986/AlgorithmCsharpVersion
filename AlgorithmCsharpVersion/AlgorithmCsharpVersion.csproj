@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Array\easy\ArrayPartitionI.cs" />
     <Compile Include="DynamicPrograming\easy\ArithmeticSlices.cs" />
     <Compile Include="DynamicPrograming\hard\RemoveBoxesWithProcedure.cs" />
     <Compile Include="DynamicPrograming\medium\BagProblem.cs" />
@@ -50,6 +51,8 @@
     <Compile Include="DynamicPrograming\easy\FewestCoins.cs" />
     <Compile Include="DynamicPrograming\easy\反复查询区间和.cs" />
     <Compile Include="DynamicPrograming\easy\抢劫房子.cs" />
+    <Compile Include="DynamicPrograming\medium\DecodeWays.cs" />
+    <Compile Include="DynamicPrograming\medium\LCS.cs" />
     <Compile Include="DynamicPrograming\medium\MinimumASCIIDeleteSumforTwoStrings.cs" />
     <Compile Include="DynamicPrograming\medium\最长递增子序列.cs" />
     <Compile Include="DynamicPrograming\easy\买卖股票最佳时间.cs" />

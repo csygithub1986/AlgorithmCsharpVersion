@@ -24,42 +24,51 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AlgorithmCsharpVersion.DynamicPrograming.medium
+namespace AlgorithmCsharpVersion.DynamicPrograming
 {
+    /// <summary>
+    /// 做过LCS，这个就好做了。但要注意初始条件
+    /// </summary>
     class MinimumASCIIDeleteSumforTwoStrings : ITest
     {
         private int Algorithm(string s1, string s2)
         {
-            int n1 = s1.Length;
-            int n2 = s2.Length;
-            int[] arr1 = new int[n1];
-            int[] arr2 = new int[n2];
-            for (int i = 0; i < n1; i++)
+            int len1 = s1.Length;
+            int len2 = s2.Length;
+            int[,] dp = new int[len1 + 1, len2 + 1];
+            for (int i = 1; i <= len1; i++)
             {
-                arr1[i] = s1.ElementAt(i);
+                dp[i, 0] = dp[i - 1, 0] + s1[i - 1];
             }
-            for (int i = 0; i < n2; i++)
+            for (int j = 1; j <= len2; j++)
             {
-                arr2[i] = s2.ElementAt(i);
+                dp[0, j] = dp[0, j - 1] + s2[j - 1];
             }
-            //dp表示当前删除的最小值
-            int dp = arr1[0] == arr2[0] ? 0 : arr1[0] + arr2[0];
-            for (int i = 1; i < n1; i++)
+            for (int i = 0; i < len1; i++)
             {
-                for (int j = 1; j < n2; j++)
+                for (int j = 0; j < len2; j++)
                 {
-                    for (int k = 0; k < n1; k++)
+                    if (s1[i] == s2[j])
                     {
-
+                        dp[i + 1, j + 1] = dp[i, j];
+                    }
+                    else
+                    {
+                        dp[i + 1, j + 1] = Math.Min(dp[i + 1, j] + s2[j], dp[i, j + 1] + s1[i]);
                     }
                 }
             }
-            return 0;
+            return dp[len1, len2];
         }
-
 
         public void AlgorithmTest()
         {
+            string s1 = "delete";
+            string s2 = "leet";
+            //string s1 = "sea";
+            //string s2 = "eat";
+            int r = Algorithm(s1, s2);
+            Console.WriteLine(r);
         }
 
         public void BruteForceTest()
