@@ -134,27 +134,14 @@ namespace AlgorithmCsharpVersion.DynamicPrograming
         public void AlgorithmTest()
         {
             Random ran = new Random();
-            string a = GetRandomStrings(100, ran.Next(10000));
-            string b = GetRandomStrings(100, ran.Next(10000));
+            string a = TestTool.GetRandomStrings(100, ran.Next(10000));
+            string b = TestTool.GetRandomStrings(100, ran.Next(10000));
             Console.WriteLine(a);
             Console.WriteLine(b);
             string c;
             int len = Algorithm2(a, b, out c);
             Console.WriteLine("答案：" + len);
             Console.WriteLine(c);
-        }
-
-        private string GetRandomStrings(int length, int seed)
-        {
-            string buffer = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            StringBuilder sb = new StringBuilder();
-            Random r = new Random(seed);
-            int range = buffer.Length;
-            for (int i = 0; i < length; i++)
-            {
-                sb.Append(buffer[r.Next(range)]);
-            }
-            return sb.ToString();
         }
 
         public void BruteForceTest()

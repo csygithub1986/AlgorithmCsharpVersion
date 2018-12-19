@@ -11,7 +11,7 @@ namespace AlgorithmCsharpVersion
         static void Main(string[] args)
         {
             //write function here
-            ITest test = new DynamicPrograming.DecodeWays();
+            ITest test = new Graph.DFS_BFS();
 
             Console.WriteLine();
             DateTime t1 = DateTime.Now;
@@ -25,7 +25,6 @@ namespace AlgorithmCsharpVersion
             test.BruteForceTest();
             DateTime t3 = DateTime.Now;
             Console.WriteLine("耗时：" + (t3 - t2).TotalMilliseconds.ToString("F0") + " ms");
-
 
             Console.WriteLine("回车退出...");
             Console.ReadLine();
